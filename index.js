@@ -1,39 +1,37 @@
-const express = require("express")
-const{users} = require("./data/users.json")
-const {books} = require("./data/books.json")
+const express = require("express");
+
+// importing routes
+const userRouter = require("./routes/users");
+const booksRouter = require("./routes/books");
+
 const app = express();
 
 const PORT = 8081;
 
 app.use(express.json());
 
-app.get("/",(req, res)=>{
+app.get("/", (req,res)=>{
     res.status(200).json({
-        message: "server is up and running"
+        message: "Server is up and running.."
     })
 })
 
 /**
- * Route: /users
- * Method: GET
- * description: get all users 
- * Access : Public
- * parameters: none
+ *  to set up routes for different parts of your application using Express.js
+ * In summary, these lines are a way to modularize your route handling by assigning specific routers to handle different parts of your API.
+ *  This can make your code more organized and easier to maintain, 
+ * especially as your application grows and you have multiple endpoints to manage.
  */
+app.use("/users",userRouter);
+app.use("/books", booksRouter);
 
-app.get("/users", (req,res)=>{
-    res.status(200).json({
-        success: true,
-        data: users
-    })
-})
 
-app.all("*", (req, res)=>{
+app.all("*", (req,res)=>{
     res.status(500).json({
-        message:"This route doesnot exist"
+        message: "This route does not exist"
     })
 })
 
 app.listen(PORT, ()=>{
-    console.log('Server is running on PORT ${PORT}')
+    console.log(`Server is running on PORT ${PORT}`)
 })
