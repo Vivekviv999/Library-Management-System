@@ -4,8 +4,8 @@
   "description": "book record management",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
-    "dev":"nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/Vivekviv999/Library-Management-System#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
